@@ -2,7 +2,7 @@ from cards import Card
 import random
 
 class Game:
-    
+
     def __init__(self):
         self.size = 4
         self.card_options = ['Add', 'Boo', 'Cat', 'Dev',
@@ -13,7 +13,7 @@ class Game:
         for column in self.columns:
             for num in range(1, self.size + 1):
                 self.locations.append(f'{column}{num}')
-                
+
     def set_cards(self):
         used_locations = []
         for word in self.card_options:
@@ -23,8 +23,7 @@ class Game:
                 used_locations.append(random_location)
                 card = Card(word, random_location)
                 self.cards.append(card)
-                
-                
+
     def create_row(self, num):
         row = []
         for column in self.columns:
@@ -33,10 +32,9 @@ class Game:
                     if card.matched:
                         row.append(str(card))
                     else: 
-                        row.append('   ')
-                        
+                        row.append('   ')       
         return row
-    
+
     def create_grid(self): 
         # / A / B / C / D / 
         header = ' |  ' + '  |  '.join(self.columns) + '  |'
@@ -46,7 +44,7 @@ class Game:
             get_row = self.create_row(row)
             print_row += ' | '.join(get_row) + ' |'
             print(print_row)
-        
+
     def check_match(self, loc1, loc2):
         cards = []
         for card in self.cards:
@@ -60,7 +58,7 @@ class Game:
             for card in cards: 
                 print(f'{card.location}: {card}')
             return False
-            
+
     def check_win(self):
         for card in self.cards:
             if card.matched == False: 
@@ -95,4 +93,3 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     game.start_game()
-    
